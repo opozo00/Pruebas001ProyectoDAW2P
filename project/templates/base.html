@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style/style.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
         <meta charset="utf-8">
         <title>Natilus Zone | Animales Exoticos </title>      
     </head>
     <body>
         <img class="fondoOla" src="{{ url_for('static',filename='imagenes/fondo1.jpg') }}"/>
-        <div>   
+        <div class="menu">   
                 {% if not current_user.is_authenticated %}         
                 <a href="{{ url_for('auth.login') }}" class="navbar-item">
                     Inicio
