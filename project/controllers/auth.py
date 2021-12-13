@@ -8,7 +8,7 @@ from base64 import b64encode
 
 from werkzeug.wrappers import response
 #from project.models.registros import Registro
-from ..models.models import User
+from ..models.usuarios import User
 from ..models.especies import Especies
 from ..models.registros import Registro 
 from project import db, mail
@@ -20,6 +20,7 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
 def login():
+    
     return render_template("login.html")
 
 @auth.route('/login', methods=['POST'])
@@ -57,8 +58,10 @@ def signup_post():
         new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
         db.session.add(new_user)
         db.session.commit()
-        msg = Message('PRUEBA 1', sender="oscarpozo@uees.edu.ec", recipients=['ospozo.op@gmail.com'])
-        print(msg)
+        
+        print(User.query.filter_by(email=email).all())
+        #msg = Message('PRUEBA 1', sender="oscarpozo@uees.edu.ec", recipients=User.query.all())
+        #print(msg)
         #mail.send(msg)
     else:
         flash('Introduzca los datos necesarios.')
@@ -91,6 +94,9 @@ def registro_especie():
     print(nombreEspecie,registro)
     db.session.add(registro)
     db.session.commit()
+    msg = Message('INGRESO DE UNA NUEVA ESPECIE', sender="oscarpozo@uees.edu.ec", recipients=User.query.all())
+    print(msg)
+    #mail.send(msg)
     #if ((nombreEspecie and nombreCientifico and ubicacion and imagen) !=  parametro):
         #registro = Especies(nombre=nombreEspecie,nCientifico=nombreCientifico,ubicacion=ubicacion,imagen=imagen,usuario_id=user_id)
         #print(nombreEspecie,registro)
@@ -101,24 +107,27 @@ def registro_especie():
         #return redirect(url_for('main.perfil'))
     #print(registro)
 
-    return redirect(url_for('main.perfil'))
+    return redirect('/data')
 
 @auth.route('/data')
+@login_required
 def retrieveDataList():
     especies = Especies.query.all()
     print(especies)
     return render_template('datalist.html',Especies=especies)
 
 @auth.route('/data/<int:id>')
+@login_required
 def RetrieveEspecie(id):
     especie = Especies.query.filter_by(id=id).first()
     print(especie)
     if especie:
         #especie = especie
         return render_template('data.html',especie = especie)
-    return f"especie with id ={id} Doenst exist"
+    return f"Especie con id = {id} NO EXISTE"
 
 @auth.route('/data/<int:id>/update',methods = ['GET','POST'])
+@login_required
 def update(id):
     especie = Especies.query.filter_by(id=id).first()
     if request.method == 'POST':
@@ -136,11 +145,12 @@ def update(id):
             db.session.add(especie)
             db.session.commit()
             return redirect(f'/data/{id}')
-        return f"Especie with id = {id} Does not exist"
+        return f"Especie con id = {id} NO EXISTE"
  
     return render_template('update.html', especie = especie)
 
 @auth.route('/data/<int:id>/delete', methods=['GET','POST'])
+@login_required
 def delete(id):
     especie = Especies.query.filter_by(id=id).first()
     if request.method == 'POST':
