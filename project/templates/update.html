@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="alertMessa">
+	{{ messages[0] }}
+</div>
+{% endif %}
+{% endwith %}
+<script type="text/javascript" src="static/js/a81368914c.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div class="container">
+    <div class="login-content">			
+        <p class="text">ACTUALIZACIÓN DE ESPECIES</p>		
+    </div>
+    <div>
+        <form action='' method = "POST" enctype="multipart/form-data">
+            <div class="form-group">               
+                Nombre
+                <input type="text" class="form-control form-control-user" id="especie"
+                     name="especie" value="{{especie.nombre}}">             
+            </div>
+            <div class="form-group">  
+                Nombre Cientifico             
+                <input type="text" class="form-control form-control-user" id="nCientifico"
+                    name="cientifico" value="{{especie.nCientifico}}">             
+            </div>
+            <div class="form-group">
+                Ubicacion               
+                <input type="text" class="form-control form-control-user" id="ubicacion"
+                    name="ubicacion" value="{{especie.ubicacion}}">             
+            </div>
+            <div class="form-group">
+                IMAGEN               
+                <input type="file" class="input is-fullwidth" id="imagen"
+                    name="imagen" value="{{especie.imagen}}">             
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

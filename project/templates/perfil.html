@@ -11,9 +11,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="container">
 	<div class="login-content">			
-			<h2 class="title">Bienvenido  {{name}}</h2>		
+			<h2 class="title">Bienvenido {{name}}</h2>
+			<p class="text">REGISTRO DE ESPECIES</p>		
+	</div>
+	<div>
+		<form method="POST" action="/perfil" enctype="multipart/form-data">
+			<div class="form-group">               
+				<input type="text" class="form-control form-control-user" id="especie"
+					placeholder="Nombre Especie" name="especie" >             
+			</div>
+			<div class="form-group">               
+				<input type="text" class="form-control form-control-user" id="nCientifico"
+					placeholder="Nombre Cientifico" name="cientifico">             
+			</div>
+			<div class="form-group">               
+				<input type="text" class="form-control form-control-user" id="ubicacion"
+					placeholder="Ubicacion" name="ubicacion">             
+			</div>
+			IMAGEN
+			<div class="form-group">               
+				<input type="file" class="input is-fullwidth" id="imagen"
+					placeholder="Imagen" name="imagen">             
+			</div>
+			<!--div class="form-group">               
+				<input type="file" class="input is-fullwidth" id="audio"
+					placeholder="Audio" name="audio">             
+			</div-->
+
+			<button class="btn btn-primary btn-user btn-block">Enviar registro</button>
+		</form>
+
 	</div>
 </div>
-
 {% endblock %}
 

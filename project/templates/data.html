@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="alertMessa">
+	{{ messages[0] }}
+</div>
+{% endif %}
+{% endwith %}
+<script type="text/javascript" src="static/js/a81368914c.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div class="container">
+    <div class="login-content">			
+        <p class="text">LISTADO DE ESPECIES</p>		
+    </div>
+    <div class="form-group">
+        <h3>Id</h3>
+        <p>{{especie.id}}</p>
+        <hr>
+        <h3>Name</h3>
+        <p>{{especie.nombre}}</p>
+        <hr>
+    </div>
+</div>
+{% endblock %}

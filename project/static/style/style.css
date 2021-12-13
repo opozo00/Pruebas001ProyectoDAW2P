@@ -13,14 +13,6 @@ body{
 
 
 /***************************************************/
-#toggle{
-    position: absolute;
-    top: 17px;
-    right: 15px;
-    color: #808080;
-    cursor: pointer;
-}
-
 .strength{
     width: 25%;
     display: inline-block;
@@ -35,7 +27,7 @@ body{
     position: relative;
 }
 
-
+/***************************************************/
 
 .navbar-item{
 	color:  rgb(255, 255, 255);

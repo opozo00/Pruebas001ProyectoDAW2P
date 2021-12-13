@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="alertMessa">
+	{{ messages[0] }}
+</div>
+{% endif %}
+{% endwith %}
+<script type="text/javascript" src="static/js/a81368914c.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div class="container">
+    <div class="login-content">			
+        <p class="text">BORRADO DE ESPECIE</p>		
+    </div>
+    <div>
+        <form action='' method = "POST" enctype="multipart/form-data">
+            <div class="form-group">
+                Click YES to confirm
+                <input type="submit" value="YES">
+                <a href='/data'>Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

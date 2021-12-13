@@ -1,49 +1,51 @@
-{% extends "base.html" %}
+{% extends "baseLS.html" %}
 {% block content %}
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<div class="contenedor-fondo container ">
-	<div class="img">
-		<!--img src="static/imagenes/caracolafricano1.png"-->
-	</div>
-	<div class="login-content">
-		<form action="/login" method="POST">
-			<img src="static/imagenes/logo.png">
-			{% with messages = get_flashed_messages() %}
-			{% if messages %}
-			<div class="alertMessa">
-				{{ messages[0] }}
-			</div>
-			{% endif %}
-			{% endwith %}
-			<h2 >Bienvenido</h2>
-			<div class="input-div one">
-				<div class="i">
-					
-					<i class="fas fa-user"></i>
-				</div>
-				<div class="div">
-					<h5>Email</h5>
-					<input type="text" class="input" name="email"  />
-				</div>
-			</div>
-			<div class="input-div pass">
-				<div class="i">
-					<i class="fas fa-lock"></i>
-				</div>
-				<div class="div">
-					<h5>Password</h5>
-					<input type="password" class="input" name ="password"  />
-				</div>
-			</div>
-			<a href="#">Olvido su contraseña?</a>
-			<input type="submit" class="btnhome" value="Login">
-			<a href="{{ url_for('auth.signup') }}"><h4 >Registar?</h4></a>
-		</form>
-	</div>
-</div>
-<script type="text/javascript" src="static/js/a81368914c.js"></script>
-<script type="text/javascript" src="static/js/main.js"></script>
+<!-- Nested Row within Card Body -->
+<div class="row">
+    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+    <div class="col-lg-6">
+        <div class="p-5">                                        
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}
+            </div>
+            {% endif %}
+            {% endwith %}
+        </div>
 
+        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Natilus Zone | Login</title>
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Login</h1>
+        </div>
+        <form id="/login" method="POST" action="/login">
+            <div class="form-group">
+                <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp"
+                    placeholder="Enter Email Address..." name="email">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password"
+                    name="password">
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox small">
+                    <input type="checkbox" class="custom-control-input" id="customCheck">
+                    <label class="custom-control-label" for="customCheck">Remember Me</label>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-user btn-block">Login</button>
+        
+        </form>
+        <hr>
+        <div class="text-center">
+            <a class="small" href="#">Forgot Password?</a>
+        </div>
+        <div class="text-center">
+            <a class="small" href="{{url_for('auth.signup')}}">Create an Account!</a>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
-
