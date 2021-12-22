@@ -8,22 +8,9 @@ class Especies(UserMixin, db.Model):
     nCientifico = db.Column(db.String(100))
     ubicacion = db.Column(db.String(100))
     imagen = db.Column(db.LargeBinary)
+    descripcion = db.Column(db.String())
     #sonido = db.Column(db.LargeBinary)
-
-    def __init__(self,id,nombre,nCientifico,ubicacion,imagen,usuario_id):
-        self.id = id
-        self.nombre = nombre
-        self.nCientifico = nCientifico
-        self.ubicacion = ubicacion
-        self.imagen = imagen
-        self.usuario_id = usuario_id
     
-    def __publicacion__(self,nombre,nCientifico,ubicacion,imagen,usuario_id):
-        self.nombre = nombre
-        self.nCientifico = nCientifico
-        self.ubicacion = ubicacion
-        self.imagen = imagen
-        self.usuario_id = usuario_id
  
     def __repr__(self):
-        return f"{self.nombre}:{self.id}"
+        return f"{self.nombre}: {self.descripcion}"

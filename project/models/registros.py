@@ -6,4 +6,4 @@ class Registro(UserMixin, db.Model):
     usuario_id = db.Column(db.Integer)
     especie_id = db.Column(db.Integer)
     registro = db.Column(db.String(25))
-    
+    #comentario = db.Column(db.String(150))

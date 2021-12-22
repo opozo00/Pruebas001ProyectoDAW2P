@@ -59,9 +59,9 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">ACCIONES:</h6>
                         <a class="collapse-item" href="{{url_for('main.perfil')}}">REGISTRAR</a>
-                        <a class="collapse-item" href="#">MOSTRAR</a>
-                        <a class="collapse-item" href="#">ACTUALIZAR</a>
-                        <a class="collapse-item" href="#">ELIMINAR</a>
+                        <a class="collapse-item" href="{{url_for('auth.retrieveDataList')}}">MOSTRAR</a>
+                        <!--a class="collapse-item" href="#">ACTUALIZAR</a>
+                        <a class="collapse-item" href="#">ELIMINAR</a-->
                     </div>
                 </div>
             </li>
@@ -252,7 +252,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user_name }}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="static/imagenes/girl.png">
+                                src="/static/imagenes/girl.png">
                                 <!--img class="img-profile rounded-circle"
                                     src="data:;base64,{{ user_image }}"-->
                             </a>

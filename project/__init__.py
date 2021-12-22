@@ -1,8 +1,9 @@
-from flask import Flask
+from flask import Flask, app
 from flask_mail import Mail, Message
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 import psycopg2
+import os
 
 #conn = psycopg2.connect("dbname='DAW-app' user='postgres' host='localhost' password='oscarpozo'")
 db = SQLAlchemy()
@@ -11,17 +12,22 @@ mail = Mail()
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
-    #conn = psycopg2.connect("dbname='DAW-app' user='postgres' host='localhost' password='oscarpozo'")
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:oscarpozo@localhost/postgres'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    #app.config['MAIL_SERVER']='smtp.mailtrap.io'
+    #app.config['MAIL_PORT'] = 2525
+    #app.config['MAIL_USERNAME'] = '8613a8415c0e8b'
+    #app.config['MAIL_PASSWORD'] = 'd4f407f2cbf93c'
+    #app.config['MAIL_USE_TLS'] = True
+    #app.config['MAIL_USE_SSL'] = False
+
 
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-    app.config['MAIL_PORT'] = 587
-    app.config['MAIL_USERNAME'] = 'oscarpozo@uees.edu.ec' #pueden cambiar por su correo pero aún no funciona del todo
-    app.config['MAIL_PASSWORD'] = 'UsuarioChelo463' #tambien usen su contraseña de correo
-    app.config['MAIL_PORT'] = 'True'
-
+    app.config['MAIL_PORT'] = 465
+    app.config['MAIL_USERNAME'] = os.environ.get('USER') #correo
+    app.config['MAIL_PASSWORD'] = os.environ.get('PASSWORD') #contraseña de correo 
+    app.config['MAIL_USE_TLS'] = False
+    app.config['MAIL_USE_SSL'] = True
 
     db.init_app(app)
     mail.init_app(app)

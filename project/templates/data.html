@@ -12,15 +12,21 @@
 
 <div class="container">
     <div class="login-content">			
-        <p class="text">LISTADO DE ESPECIES</p>		
+        <p class="text">ESPECIE </p>		
     </div>
     <div class="form-group">
-        <h3>Id</h3>
-        <p>{{especie.id}}</p>
-        <hr>
-        <h3>Name</h3>
+        <h3>Nombre</h3>
         <p>{{especie.nombre}}</p>
         <hr>
+        <h3>Descripcion</h3>
+        <p>{{especie.descripcion}}</p>
+        <hr>
+        <h3>Imagen</h3>
+        <img class="img-profile rounded-circle"src="data:;base64,{{ imagen }}">
+        <hr>
+        
     </div>
 </div>
 {% endblock %}
+<!--p>data:;base64,{{especie.imagen}}</p-->
+<!--img class="img-profile rounded-circle"src="data:;base64,{{ especie.imagen }}"-->
